@@ -2,6 +2,10 @@
 
 Demo rest api with symfony 4
 
+[![Build Status](https://travis-ci.com/cedricduffournet/symfony-api-demo.svg?branch=master)](https://travis-ci.com/cedricduffournet/symfony-api-demo)
+[![StyleCI](https://github.styleci.io/repos/198994053/shield?branch=master)](https://github.styleci.io/repos/198994053)
+[![SymfonyInsight](https://insight.symfony.com/projects/607becbe-200a-4952-96ba-deb1d20e3856/mini.svg)](https://insight.symfony.com/projects/607becbe-200a-4952-96ba-deb1d20e3856)
+
 ## Installation
 
 1: Clone repository
