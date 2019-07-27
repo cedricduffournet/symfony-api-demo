@@ -40,6 +40,21 @@ services:
             $mailer: '@fos_user.mailer'
             $retryTtl: '%fos_user.resetting.retry_ttl%'
 
+    App\Form\Type\CurrencyType:
+        public: true
+        arguments:
+            $currencyCodeList: '%tbbc_money.currencies%'
+            $referenceCurrencyCode: '%tbbc_money.reference_currency%'
+
+    App\Form\Type\MoneyType:
+        public: true
+        arguments:
+            $decimals: '%tbbc_money.decimals%'
+
+    App\Form\Type\SimpleMoneyType:
+        public: true
+        arguments:
+            $decimals: '%tbbc_money.decimals%'
 
     #App\DataFixtures\ORM\:
     #    resource: '../src/Dakodapp/DataFixtures/ORM/'

@@ -1,0 +1,3 @@
+tbbc_money:
+    reference_currency: "EUR"
+    decimals: 2

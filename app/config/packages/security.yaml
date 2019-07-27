@@ -19,17 +19,30 @@ security:
 
         ROLE_USER: 
             - ROLE_CAN_DOWNLOAD_FILE
+            - ROLE_PRODUCT_VIEW
+            - ROLE_PRODUCT_CATEGORY_VIEW
         ROLE_CIVILITY:
             - ROLE_CIVILITY_VIEW
             - ROLE_CIVILITY_EDIT
             - ROLE_CIVILITY_CREATE
             - ROLE_CIVILITY_DELETE
+        ROLE_PRODUCT: 
+            - ROLE_PRODUCT_VIEW
+            - ROLE_PRODUCT_EDIT
+            - ROLE_PRODUCT_CREATE
+            - ROLE_PRODUCT_DELETE
+        ROLE_PRODUCT_CATEGORY: 
+            - ROLE_PRODUCT_CATEGORY_VIEW
+            - ROLE_PRODUCT_CATEGORY_EDIT
+            - ROLE_PRODUCT_CATEGORY_CREATE
+            - ROLE_PRODUCT_CATEGORY_DELETE
         ROLE_ADMIN:
             - ROLE_USER
-
+            - ROLE_PRODUCT
         ROLE_SUPER_ADMIN:
             - ROLE_ADMIN
             - ROLE_CIVILITY
+            - ROLE_PRODUCT_CATEGORY
 
     firewalls:
         # disables authentication for assets and the profiler, adapt it according to your needs

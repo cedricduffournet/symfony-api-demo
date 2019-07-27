@@ -17,8 +17,12 @@ default:
                     civilityService: '@App\Service\CivilityService'
                 - App\Features\Context\CivilitySetupContext:
                     civilityService: '@App\Service\CivilityService'
+                - App\Features\Context\ProductCategorySetupContext:
+                    productCategoryService: '@App\Service\ProductCategoryService'
+                - App\Features\Context\ProductSetupContext:
+                    productService: '@App\Service\ProductService'
+                    productCategoryService: '@App\Service\ProductCategoryService'
             
-
     extensions:
         Imbo\BehatApiExtension:
             apiClient:
