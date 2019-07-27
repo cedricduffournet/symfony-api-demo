@@ -22,3 +22,6 @@ nelmio_api_doc:
     superadmin:
       path_patterns:
         - ^/api/civilities
+  #models:
+  #  names: 
+  #    - { alias: Civility:form, type: App\Form\CivilityType}

@@ -184,6 +184,9 @@
             "ref": "fe60ce509ef04a3f40da96e3979bc8d9b13b2372"
         }
     },
+    "moneyphp/money": {
+        "version": "v1.3.0"
+    },
     "monolog/monolog": {
         "version": "1.24.0"
     },
@@ -375,6 +378,9 @@
         "version": "v4.2.10"
     },
     "symfony/doctrine-bridge": {
+        "version": "v4.2.10"
+    },
+    "symfony/dom-crawler": {
         "version": "v4.2.10"
     },
     "symfony/dotenv": {
@@ -631,6 +637,9 @@
     },
     "symfony/yaml": {
         "version": "v4.2.10"
+    },
+    "tbbc/money-bundle": {
+        "version": "v3.1.9"
     },
     "theseer/tokenizer": {
         "version": "1.1.3"

@@ -17,8 +17,10 @@ doctrine:
                 default_table_options:
                     charset: utf8mb4
                     collate: utf8mb4_unicode_ci
-
                 url: '%env(resolve:DATABASE_URL)%'
+        types:
+            money: Tbbc\MoneyBundle\Type\MoneyType
+
     orm:
         default_entity_manager: default
         auto_generate_proxy_classes: true
@@ -34,4 +36,3 @@ doctrine:
                         dir: '%kernel.project_dir%/src/Entity'
                         prefix: 'App\Entity'
                         alias: App
-
