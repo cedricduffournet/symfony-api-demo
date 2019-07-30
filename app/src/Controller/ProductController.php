@@ -8,6 +8,7 @@ use App\Service\ProductServiceInterface;
 use Doctrine\DBAL\Exception\ForeignKeyConstraintViolationException;
 use FOS\RestBundle\Controller\AbstractFOSRestController;
 use FOS\RestBundle\Controller\Annotations as Rest;
+use FOS\RestBundle\Request\ParamFetcherInterface;
 use FOS\RestBundle\View\View;
 use Nelmio\ApiDocBundle\Annotation\Model;
 use Nelmio\ApiDocBundle\Annotation\Operation;
@@ -54,7 +55,7 @@ class ProductController extends AbstractFOSRestController
      *     @SWG\Response(
      *         response="201",
      *         description="Returned when created",
-     *         @Model(type=App\Entity\Product::class, groups={"Default"})
+     *         @Model(type=App\Entity\Product::class)
      *     ),
      *     @SWG\Response(
      *         response="400",
@@ -80,26 +81,29 @@ class ProductController extends AbstractFOSRestController
     }
 
     /**
-     * Retrieves a collection of Product.
+     * Retrieves a collection of Company.
      *
      * @Rest\Get("/products")
      *
      * @Operation(
      *      tags={"Product"},
-     *      summary="Get the list of Product.",
+     *      summary="Get the list of Products.",
      *      @SWG\Response(
      *          response="200",
      *          description="Returned when successful",
-     *          @SWG\Schema(
-     *              type="array",
-     *              @SWG\Items(ref=@Model(type=App\Entity\Product::class, groups={"Default"}))
-     *          )
-     *     )
+     *          @Model(type=App\Model\ProductsPaginated::class)
+     *      )
      * )
+     *
+     * @Rest\QueryParam(name="page", requirements="\d+", nullable=false, default="1", description="Offset from which to start listing products.")
+     * @Rest\QueryParam(name="itemsPerPage", requirements="\d+", default="5", description="How many products to return.")
+     * @Security("is_granted('ROLE_PRODUCT_VIEW')")
      */
-    public function getProducts(): View
+    public function getProducts(ParamFetcherInterface $paramFetcher): View
     {
-        $products = $this->productService->getAllProducts();
+        $filters = $this->getFilters($paramFetcher);
+
+        $products = $this->productService->searchProduct($filters);
 
         return $this->view($products, Response::HTTP_OK);
     }
@@ -122,7 +126,7 @@ class ProductController extends AbstractFOSRestController
      *     @SWG\Response(
      *         response="200",
      *         description="Returned when successful",
-     *         @Model(type=App\Entity\Product::class, groups={"Default"})
+     *         @Model(type=App\Entity\Product::class)
      *     ),
      *     @SWG\Response(
      *         response="404",
@@ -160,7 +164,7 @@ class ProductController extends AbstractFOSRestController
      *     @SWG\Response(
      *         response="200",
      *         description="Returned when updated",
-     *         @Model(type=App\Entity\Product::class, groups={ "Default"})
+     *         @Model(type=App\Entity\Product::class)
      *     ),
      *     @SWG\Response(
      *         response="400",
@@ -212,5 +216,10 @@ class ProductController extends AbstractFOSRestController
         }
 
         return $this->view([], Response::HTTP_NO_CONTENT);
+    }
+
+    private function getFilters(ParamFetcherInterface $paramFetcher)
+    {
+        return $paramFetcher->all();
     }
 }

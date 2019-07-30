@@ -6,7 +6,6 @@ use App\Model\ProductInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
-use JMS\Serializer\Annotation\Groups;
 use JMS\Serializer\Annotation\SerializedName;
 use JMS\Serializer\Annotation\Type;
 use Money\Currency;
@@ -29,7 +28,6 @@ class Product implements ProductInterface
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
-     * @Groups({"Default"})
      */
     private $id;
 
@@ -43,7 +41,6 @@ class Product implements ProductInterface
      * @Assert\Length(
      *      max = 255
      * )
-     * @Groups({"Default","user_info"})
      */
     private $name;
 
@@ -54,7 +51,6 @@ class Product implements ProductInterface
      *
      * @ORM\Column(name="description", type="text")
      * @Assert\NotBlank
-     * @Groups({"Default"})
      */
     private $description;
 
@@ -65,7 +61,6 @@ class Product implements ProductInterface
      *
      * @ORM\Column(name="price_amount", type="integer")
      * @SerializedName("priceAmount")
-     * @Groups({"Default"})
      */
     private $priceAmount;
 
@@ -76,7 +71,6 @@ class Product implements ProductInterface
      *
      * @ORM\Column(name="price_currency", type="string", length=64)
      * @SerializedName("priceCurrency")
-     * @Groups({"Default"})
      */
     private $priceCurrency;
 
@@ -86,7 +80,6 @@ class Product implements ProductInterface
      * @var ArrayCollection
      *
      * @ORM\ManyToMany(targetEntity="ProductCategory")
-     * @Groups({"Default"})
      */
     private $categories;
 

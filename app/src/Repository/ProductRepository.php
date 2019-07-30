@@ -4,11 +4,12 @@ namespace App\Repository;
 
 use App\Entity\Product;
 use Doctrine\ORM\EntityManagerInterface;
+use Pagerfanta\Pagerfanta;
 
 /**
  * ProductRepository.
  */
-class ProductRepository implements ProductRepositoryInterface
+class ProductRepository extends AbstractPaginateRepository implements ProductRepositoryInterface
 {
     /**
      * @var EntityManagerInterface
@@ -46,5 +47,12 @@ class ProductRepository implements ProductRepositoryInterface
     {
         $this->entityManager->persist($Product);
         $this->entityManager->flush();
+    }
+
+    public function search(array $options = []): Pagerfanta
+    {
+        $qb = $this->objectRepository->createQueryBuilder('c');
+
+        return $this->paginate($qb->getQuery(), $options['itemsPerPage'], $options['page']);
     }
 }

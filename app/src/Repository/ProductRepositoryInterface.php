@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Product;
+use Pagerfanta\Pagerfanta;
 
 interface ProductRepositoryInterface
 {
@@ -13,4 +14,6 @@ interface ProductRepositoryInterface
     public function remove(Product $product): void;
 
     public function save(Product $product): void;
+
+    public function search(array $options = []): Pagerfanta;
 }

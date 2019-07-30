@@ -24,4 +24,4 @@ nelmio_api_doc:
         - ^/api/civilities
   #models:
   #  names: 
-  #    - { alias: Civility:form, type: App\Form\CivilityType}
+  #    - { alias: Product, type: App\Entity\Product}
