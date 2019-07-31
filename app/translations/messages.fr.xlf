@@ -130,54 +130,6 @@
                 <source>resetting.email.message</source>
                 <target>Pour réinitialiser votre mot de passe, merci de vous rendre sur</target>
             </trans-unit>
-            <trans-unit id="adduserrequest.email.subject">
-                <source>adduserrequest.email.subject</source>
-                <target>Nouvelle demande de rattachement en attente de validation</target>
-            </trans-unit>
-            <trans-unit id="adduserrequest.email.message">
-                <source>adduserrequest.email.message</source>
-                <target>Une personne souhaite être rattaché à votre laboratoire. Valider la demande en vous connectant sur</target>
-            </trans-unit>
-            <trans-unit id="refuseduserrequest.email.subject">
-                <source>refuseduserrequest.email.subject</source>
-                <target>Votre demande de rattachement a été refusée</target>
-            </trans-unit>
-            <trans-unit id="refuseduserrequest.email.message">
-                <source>refuseduserrequest.email.message</source>
-                <target>Votre demande de rattachement au laboratoire %company% a été refusée pour la raison suivante :</target>
-            </trans-unit>
-            <trans-unit id="refuseduserrequestpart2.email.message">
-                <source>refuseduserrequestpart2.email.message</source>
-                <target>Vous pouvez faire une nouvelle demande en vous connectant sur</target>
-            </trans-unit>
-            <trans-unit id="accepteduserrequest.email.subject">
-                <source>accepteduserrequest.email.subject</source>
-                <target>Votre demande de rattachement a été acceptée</target>
-            </trans-unit>
-            <trans-unit id="accepteduserrequest.email.message">
-                <source>accepteduserrequest.email.message</source>
-                <target>Votre demande de rattachement au laboratoire %company% a été acceptée.</target>
-            </trans-unit>
-            <trans-unit id="accepteduserrequestpart2.email.message">
-                <source>accepteduserrequestpart2.email.message</source>
-                <target>Connectez-vous à</target>
-            </trans-unit>
-            <trans-unit id="addmembership.email.subject">
-                <source>addmembership.email.subject</source>
-                <target>Nouvelle demande d'adhésion à valider</target>
-            </trans-unit>
-            <trans-unit id="addmembership.email.message">
-                <source>addmembership.email.message</source>
-                <target>Vous avez une nouvelle demande d'adhésion à valider</target>
-            </trans-unit>
-            <trans-unit id="addmembership2.email.message">
-                <source>addmembership2.email.message</source>
-                <target>Vous pouvez la valider en vous connectant sur</target>
-            </trans-unit>
-            <trans-unit id="membershipcampaign.email.subject">
-                <source>membershipcampaign.email.subject</source>
-                <target>Renouvellement de votre contract d'adhésion</target>
-            </trans-unit>
         </body>
     </file>
 </xliff>

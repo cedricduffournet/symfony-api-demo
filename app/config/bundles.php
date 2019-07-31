@@ -20,4 +20,6 @@ return [
     Symfony\Bundle\MonologBundle\MonologBundle::class                    => ['all' => true],
     Symfony\Bundle\WebProfilerBundle\WebProfilerBundle::class            => ['dev' => true, 'test' => true],
     Tbbc\MoneyBundle\TbbcMoneyBundle::class                              => ['all' => true],
+    Nelmio\Alice\Bridge\Symfony\NelmioAliceBundle::class                 => ['dev' => true, 'test' => true],
+    WhiteOctober\PagerfantaBundle\WhiteOctoberPagerfantaBundle::class    => ['all' => true],
 ];

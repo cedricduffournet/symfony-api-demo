@@ -3,6 +3,7 @@
 namespace App\Service;
 
 use App\Entity\Product;
+use App\Model\ProductsPaginated;
 use App\Repository\ProductRepositoryInterface;
 
 class ProductService implements ProductServiceInterface
@@ -40,5 +41,12 @@ class ProductService implements ProductServiceInterface
     public function deleteProduct(Product $product): void
     {
         $this->productRepository->remove($product);
+    }
+
+    public function searchProduct(array $options = []): ProductsPaginated
+    {
+        $products = $this->productRepository->search($options);
+
+        return new ProductsPaginated($products);
     }
 }

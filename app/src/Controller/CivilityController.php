@@ -54,7 +54,7 @@ class CivilityController extends AbstractFOSRestController
      *     @SWG\Response(
      *         response="201",
      *         description="Returned when created",
-     *         @Model(type=App\Entity\Civility::class, groups={"Default","user_info"})
+     *         @Model(type=App\Entity\Civility::class, groups={"user_info"})
      *     ),
      *     @SWG\Response(
      *         response="400",
@@ -92,7 +92,7 @@ class CivilityController extends AbstractFOSRestController
      *          description="Returned when successful",
      *          @SWG\Schema(
      *              type="array",
-     *              @SWG\Items(ref=@Model(type=App\Entity\Civility::class, groups={"Default","user_info"}))
+     *              @SWG\Items(ref=@Model(type=App\Entity\Civility::class, groups={"user_info"}))
      *          )
      *     )
      * )
@@ -122,7 +122,7 @@ class CivilityController extends AbstractFOSRestController
      *     @SWG\Response(
      *         response="200",
      *         description="Returned when successful",
-     *         @Model(type=App\Entity\Civility::class, groups={"Default","user_info"})
+     *         @Model(type=App\Entity\Civility::class, groups={"user_info"})
      *     ),
      *     @SWG\Response(
      *         response="404",
@@ -160,7 +160,7 @@ class CivilityController extends AbstractFOSRestController
      *     @SWG\Response(
      *         response="200",
      *         description="Returned when updated",
-     *         @Model(type=App\Entity\Civility::class, groups={ "Default","user_info"})
+     *         @Model(type=App\Entity\Civility::class, groups={ "user_info"})
      *     ),
      *     @SWG\Response(
      *         response="400",

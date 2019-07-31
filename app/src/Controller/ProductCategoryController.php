@@ -54,7 +54,7 @@ class ProductCategoryController extends AbstractFOSRestController
      *     @SWG\Response(
      *         response="201",
      *         description="Returned when created",
-     *         @Model(type=App\Entity\ProductCategory::class, groups={"Default","user_info"})
+     *         @Model(type=App\Entity\ProductCategory::class)
      *     ),
      *     @SWG\Response(
      *         response="400",
@@ -92,7 +92,7 @@ class ProductCategoryController extends AbstractFOSRestController
      *          description="Returned when successful",
      *          @SWG\Schema(
      *              type="array",
-     *              @SWG\Items(ref=@Model(type=App\Entity\ProductCategory::class, groups={"Default","user_info"}))
+     *              @SWG\Items(ref=@Model(type=App\Entity\ProductCategory::class))
      *          )
      *     )
      * )
@@ -124,7 +124,7 @@ class ProductCategoryController extends AbstractFOSRestController
      *     @SWG\Response(
      *         response="200",
      *         description="Returned when successful",
-     *         @Model(type=App\Entity\ProductCategory::class, groups={"Default","user_info"})
+     *         @Model(type=App\Entity\ProductCategory::class)
      *     ),
      *     @SWG\Response(
      *         response="404",
@@ -162,7 +162,7 @@ class ProductCategoryController extends AbstractFOSRestController
      *     @SWG\Response(
      *         response="200",
      *         description="Returned when updated",
-     *         @Model(type=App\Entity\ProductCategory::class, groups={ "Default","user_info"})
+     *         @Model(type=App\Entity\ProductCategory::class)
      *     ),
      *     @SWG\Response(
      *         response="400",

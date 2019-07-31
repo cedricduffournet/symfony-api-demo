@@ -28,6 +28,10 @@ Feature: Provide a consistent standard JSON API endpoint
       | id | name      | description           | priceAmount | priceCurrency | categories |
       | 1  | Product 1 | Description Product 1 | 1020        | EUR           | 1,2        |
       | 2  | Product 2 | Description Product 2 | 2030        | EUR           | 1          |
+      | 3  | Product 3 | Description Product 3 | 3020        | EUR           | 1,2        |
+      | 4  | Product 4 | Description Product 4 | 4030        | EUR           | 1          |
+      | 5  | Product 5 | Description Product 5 | 5020        | EUR           | 1,2        |
+
 
     And the "content-type" request header is "application/json"
 
@@ -53,7 +57,7 @@ Feature: Provide a consistent standard JSON API endpoint
     And the response body contains JSON:
       """
       {
-        "id": 3,
+        "id": 6,
         "name": "New product",
         "description": "Description new product",
         "priceAmount": 15050,
@@ -71,45 +75,149 @@ Feature: Provide a consistent standard JSON API endpoint
       }
       """
 
-  Scenario: Can get a collection of Products
+  Scenario: Can get a collection of Products with default pagination
     Given I am successfully logged in with username: "superadmin@test.com", password: "adminpwd" and grantType: "password"
     When I request "/api/products" using HTTP GET
     Then the response code is 200
     And the "Content-Type" response header is "application/json"
     And the response body contains JSON:
       """
-      [
-        {
-          "id": 1,
-          "name": "Product 1",
-          "description": "Description Product 1",
-          "priceAmount": 1020,
-          "priceCurrency": "EUR",
-          "categories": [
-            {
-              "id": 1,
-              "name": "Category 1"
-            },
-            {
-              "id": 2,
-              "name": "Category 2"
-            }
-          ]
-        },
-        {
-          "id": 2,
-          "name": "Product 2",
-          "description": "Description Product 2",
-          "priceAmount": 2030,
-          "priceCurrency": "EUR",
-          "categories": [
-            {
-              "id": 1,
-              "name": "Category 1"
-            }
-          ]
+      {
+        "data": [
+          {
+            "id": 1,
+            "name": "Product 1",
+            "description": "Description Product 1",
+            "priceAmount": 1020,
+            "priceCurrency": "EUR",
+            "categories": [
+              {
+                "id": 1,
+                "name": "Category 1"
+              },
+              {
+                "id": 2,
+                "name": "Category 2"
+              }
+            ]
+          },
+          {
+            "id": 2,
+            "name": "Product 2",
+            "description": "Description Product 2",
+            "priceAmount": 2030,
+            "priceCurrency": "EUR",
+            "categories": [
+              {
+                "id": 1,
+                "name": "Category 1"
+              }
+            ]
+          },
+          {
+            "id": 3,
+            "name": "Product 3",
+            "description": "Description Product 3",
+            "priceAmount": 3020,
+            "priceCurrency": "EUR",
+            "categories": [
+              {
+                "id": 1,
+                "name": "Category 1"
+              },
+              {
+                "id": 2,
+                "name": "Category 2"
+              }
+            ]
+          },
+          {
+            "id": 4,
+            "name": "Product 4",
+            "description": "Description Product 4",
+            "priceAmount": 4030,
+            "priceCurrency": "EUR",
+            "categories": [
+              {
+                "id": 1,
+                "name": "Category 1"
+              }
+            ]
+          },
+          {
+            "id": 5,
+            "name": "Product 5",
+            "description": "Description Product 5",
+            "priceAmount": 5020,
+            "priceCurrency": "EUR",
+            "categories": [
+              {
+                "id": 1,
+                "name": "Category 1"
+              },
+              {
+                "id": 2,
+                "name": "Category 2"
+              }
+            ]
+          }
+        ],
+        "meta": {
+          "page": 1,
+          "pageCount": 1,
+          "itemsPerPage": 5,
+          "totalItems": 5
         }
-      ]
+      }
+      """
+
+  Scenario: Can get a collection of Products with page = 2 and itemsPerPage=2
+    Given I am successfully logged in with username: "superadmin@test.com", password: "adminpwd" and grantType: "password"
+    When I request "/api/products?itemsPerPage=2&page=2" using HTTP GET
+    Then the response code is 200
+    And the "Content-Type" response header is "application/json"
+    And the response body contains JSON:
+      """
+      {
+        "data": [
+          {
+            "id": 3,
+            "name": "Product 3",
+            "description": "Description Product 3",
+            "priceAmount": 3020,
+            "priceCurrency": "EUR",
+            "categories": [
+              {
+                "id": 1,
+                "name": "Category 1"
+              },
+              {
+                "id": 2,
+                "name": "Category 2"
+              }
+            ]
+          },
+          {
+            "id": 4,
+            "name": "Product 4",
+            "description": "Description Product 4",
+            "priceAmount": 4030,
+            "priceCurrency": "EUR",
+            "categories": [
+              {
+                "id": 1,
+                "name": "Category 1"
+              }
+            ]
+          }
+        ],
+        "meta": {
+          "page": 2,
+          "pageCount": 3,
+          "itemsPerPage": 2,
+          "totalItems": 5
+        }
+      }
       """
 
   Scenario: Can get a single Product

@@ -23,7 +23,7 @@ class Civility implements CivilityInterface
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
-     * @Groups({"Default","user_info"})
+     * @Groups({"user_info"})
      */
     private $id;
 
@@ -37,7 +37,7 @@ class Civility implements CivilityInterface
      * @Assert\Length(
      *      max = 255
      * )
-     * @Groups({"Default","user_info"})
+     * @Groups({"user_info"})
      */
     private $name;
 
@@ -51,7 +51,7 @@ class Civility implements CivilityInterface
      * @Assert\Length(
      *      max = 10
      * )
-     * @Groups({"Default","user_info"})
+     * @Groups({"user_info"})
      */
     private $code;
 
