@@ -1,5 +1,11 @@
+
+App\Entity\ProductCategory:
+  productcategory{1..5}:
+    name: Category <current()>
+
 App\Entity\Product:
-  product_{1..5}:
+  product{1..100}:
     name: Product <current()>
     description: <text(1000)>
     price: <money(10000)>
+    categories: '<numberBetween(0, 5)>x @productcategory*'
