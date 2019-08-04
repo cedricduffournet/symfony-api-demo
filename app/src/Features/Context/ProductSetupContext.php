@@ -2,7 +2,7 @@
 
 namespace App\Features\Context;
 
-use App\Service\ProductCategoryServiceInterface;
+use App\ProductCategory\ProductCategoryServiceInterface;
 use App\Service\ProductServiceInterface;
 use Behat\Behat\Context\Context;
 use Behat\Behat\Context\SnippetAcceptingContext;

@@ -27,9 +27,6 @@ use Symfony\Component\HttpFoundation\Response;
  */
 class CivilityController extends AbstractFOSRestController
 {
-    /**
-     * @var CivilityServiceInterface
-     */
     private $civilityService;
 
     private $civilityRequestHandler;
