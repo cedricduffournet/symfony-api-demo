@@ -14,14 +14,14 @@ default:
                 - App\Features\Context\UserSetupContext:
                     userManager: '@fos_user.user_manager'
                     groupManager: '@fos_user.group_manager'
-                    civilityService: '@App\Service\CivilityService'
+                    civilityService: '@App\Civility\CivilityService'
                 - App\Features\Context\CivilitySetupContext:
-                    civilityService: '@App\Service\CivilityService'
+                    civilityService: '@App\Civility\CivilityService'
                 - App\Features\Context\ProductCategorySetupContext:
-                    productCategoryService: '@App\Service\ProductCategoryService'
+                    productCategoryService: '@App\ProductCategory\ProductCategoryService'
                 - App\Features\Context\ProductSetupContext:
-                    productService: '@App\Service\ProductService'
-                    productCategoryService: '@App\Service\ProductCategoryService'
+                    productService: '@App\Product\ProductService'
+                    productCategoryService: '@App\ProductCategory\ProductCategoryService'
             
     extensions:
         Imbo\BehatApiExtension:

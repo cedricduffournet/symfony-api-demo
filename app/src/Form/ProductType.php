@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\ProductCategory;
 use App\Form\Type\SimpleMoneyType;
+use App\Product\ProductRequest;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -28,7 +29,7 @@ class ProductType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => 'App\Entity\Product',
+            'data_class' => ProductRequest::class,
         ]);
     }
 }

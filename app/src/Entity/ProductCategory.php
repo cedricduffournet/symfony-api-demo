@@ -3,9 +3,9 @@
 namespace App\Entity;
 
 use App\Model\ProductCategoryInterface;
+use App\ProductCategory\ProductCategoryRequest;
 use Doctrine\ORM\Mapping as ORM;
 use JMS\Serializer\Annotation\Groups;
-use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity
@@ -33,15 +33,25 @@ class ProductCategory implements ProductCategoryInterface
      * @var string
      *
      * @ORM\Column(name="name", type="string")
-     * @Assert\NotBlank
-     * @Assert\Length(
-     *      max = 255
-     * )
      * @Groups({"Default"})
      */
     private $name;
 
-    public function getId(): ?int
+    public static function create(string $name): self
+    {
+        $productCategory = new self();
+
+        $productCategory->name = $name;
+
+        return $productCategory;
+    }
+
+    public function update(ProductCategoryRequest $productCategoryRequest): void
+    {
+        $this->name = $productCategoryRequest->name;
+    }
+
+    public function getId(): int
     {
         return $this->id;
     }
@@ -51,7 +61,7 @@ class ProductCategory implements ProductCategoryInterface
         $this->name = $name;
     }
 
-    public function getName(): ?string
+    public function getName(): string
     {
         return $this->name;
     }

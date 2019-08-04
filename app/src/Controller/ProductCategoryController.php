@@ -4,7 +4,9 @@ namespace App\Controller;
 
 use App\Entity\ProductCategory;
 use App\Form\ProductCategoryType;
-use App\Service\ProductCategoryServiceInterface;
+use App\ProductCategory\ProductCategoryRequest;
+use App\ProductCategory\ProductCategoryRequestHandler;
+use App\ProductCategory\ProductCategoryServiceInterface;
 use Doctrine\DBAL\Exception\ForeignKeyConstraintViolationException;
 use FOS\RestBundle\Controller\AbstractFOSRestController;
 use FOS\RestBundle\Controller\Annotations as Rest;
@@ -25,17 +27,17 @@ use Symfony\Component\HttpFoundation\Response;
  */
 class ProductCategoryController extends AbstractFOSRestController
 {
-    /**
-     * @var ProductCategoryServiceInterface
-     */
     private $productCategoryService;
+
+    private $productCategoryRequestHandler;
 
     /**
      * ProductCategoryController constructor.
      */
-    public function __construct(ProductCategoryServiceInterface $productCategoryService)
+    public function __construct(ProductCategoryServiceInterface $productCategoryService, ProductCategoryRequestHandler $productCategoryRequestHandler)
     {
         $this->productCategoryService = $productCategoryService;
+        $this->productCategoryRequestHandler = $productCategoryRequestHandler;
     }
 
     /**
@@ -66,12 +68,13 @@ class ProductCategoryController extends AbstractFOSRestController
      */
     public function postProductCategory(Request $request): View
     {
-        $productCategory = $this->productCategoryService->createProductCategory();
-        $form = $this->createForm(ProductCategoryType::class, $productCategory);
+        $productCategoryRequest = new ProductCategoryRequest();
+        $form = $this->createForm(ProductCategoryType::class, $productCategoryRequest);
+
         $form->submit($request->request->all());
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $this->productCategoryService->updateProductCategory($productCategory);
+            $productCategory = $this->productCategoryRequestHandler->addProductCategory($productCategoryRequest);
 
             return $this->view($productCategory, Response::HTTP_CREATED);
         }
@@ -174,11 +177,12 @@ class ProductCategoryController extends AbstractFOSRestController
      */
     public function putProductCategory(Request $request, ProductCategory $productCategory): View
     {
-        $form = $this->createForm(ProductCategoryType::class, $productCategory);
+        $productCategoryRequest = ProductCategoryRequest::createFromProductCategory($productCategory);
+        $form = $this->createForm(ProductCategoryType::class, $productCategoryRequest);
 
         $form->submit($request->request->all());
         if ($form->isValid()) {
-            $this->productCategoryService->updateProductCategory($productCategory);
+            $this->productCategoryRequestHandler->updateProductCategory($productCategoryRequest, $productCategory);
 
             return $this->view($productCategory, Response::HTTP_OK);
         }

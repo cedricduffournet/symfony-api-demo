@@ -2,6 +2,7 @@
 
 namespace App\Form;
 
+use App\ProductCategory\ProductCategoryRequest;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -17,7 +18,7 @@ class ProductCategoryType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => 'App\Entity\ProductCategory',
+            'data_class' => ProductCategoryRequest::class,
         ]);
     }
 }

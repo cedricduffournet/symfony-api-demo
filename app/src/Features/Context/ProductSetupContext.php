@@ -2,8 +2,8 @@
 
 namespace App\Features\Context;
 
-use App\Service\ProductCategoryServiceInterface;
-use App\Service\ProductServiceInterface;
+use App\Product\ProductServiceInterface;
+use App\ProductCategory\ProductCategoryServiceInterface;
 use Behat\Behat\Context\Context;
 use Behat\Behat\Context\SnippetAcceptingContext;
 use Behat\Gherkin\Node\TableNode;
