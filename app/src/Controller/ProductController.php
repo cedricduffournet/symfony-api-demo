@@ -4,7 +4,9 @@ namespace App\Controller;
 
 use App\Entity\Product;
 use App\Form\ProductType;
-use App\Service\ProductServiceInterface;
+use App\Product\ProductRequest;
+use App\Product\ProductRequestHandler;
+use App\Product\ProductServiceInterface;
 use Doctrine\DBAL\Exception\ForeignKeyConstraintViolationException;
 use FOS\RestBundle\Controller\AbstractFOSRestController;
 use FOS\RestBundle\Controller\Annotations as Rest;
@@ -26,17 +28,17 @@ use Symfony\Component\HttpFoundation\Response;
  */
 class ProductController extends AbstractFOSRestController
 {
-    /**
-     * @var ProductServiceInterface
-     */
     private $productService;
+
+    private $productRequestHandler;
 
     /**
      * ProductController constructor.
      */
-    public function __construct(ProductServiceInterface $productService)
+    public function __construct(ProductServiceInterface $productService, ProductRequestHandler $productRequestHandler)
     {
         $this->productService = $productService;
+        $this->productRequestHandler = $productRequestHandler;
     }
 
     /**
@@ -67,12 +69,13 @@ class ProductController extends AbstractFOSRestController
      */
     public function postProduct(Request $request): View
     {
-        $product = $this->productService->createProduct();
-        $form = $this->createForm(ProductType::class, $product);
+        $productRequest = new ProductRequest();
+        $form = $this->createForm(ProductType::class, $productRequest);
+
         $form->submit($request->request->all());
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $this->productService->updateProduct($product);
+            $product = $this->productRequestHandler->addProduct($productRequest);
 
             return $this->view($product, Response::HTTP_CREATED);
         }
@@ -176,11 +179,12 @@ class ProductController extends AbstractFOSRestController
      */
     public function putProduct(Request $request, Product $product): View
     {
-        $form = $this->createForm(ProductType::class, $product);
+        $productRequest = ProductRequest::createFromProduct($product);
+        $form = $this->createForm(ProductType::class, $productRequest);
 
         $form->submit($request->request->all());
         if ($form->isValid()) {
-            $this->productService->updateProduct($product);
+            $this->productRequestHandler->updateProduct($productRequest, $product);
 
             return $this->view($product, Response::HTTP_OK);
         }

@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Model\ProductInterface;
+use App\Product\ProductRequest;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -77,7 +78,7 @@ class Product implements ProductInterface
     /**
      * Product categories.
      *
-     * @var ArrayCollection
+     * @var ProductCategory[]|ArrayCollection
      *
      * @ORM\ManyToMany(targetEntity="ProductCategory")
      */
@@ -86,6 +87,26 @@ class Product implements ProductInterface
     public function __construct()
     {
         $this->categories = new ArrayCollection();
+    }
+
+    public static function create(string $name, string $description, Money $price, iterable $categories): self
+    {
+        $product = new self();
+
+        $product->name = $name;
+        $product->description = $description;
+        $product->categories = $categories;
+        $product->setPrice($price);
+
+        return $product;
+    }
+
+    public function update(ProductRequest $productRequest): void
+    {
+        $this->name = $productRequest->name;
+        $this->description = $productRequest->description;
+        $this->categories = $productRequest->categories;
+        $this->setPrice($productRequest->price);
     }
 
     public function getId(): ?int

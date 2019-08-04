@@ -20,7 +20,7 @@ default:
                 - App\Features\Context\ProductCategorySetupContext:
                     productCategoryService: '@App\ProductCategory\ProductCategoryService'
                 - App\Features\Context\ProductSetupContext:
-                    productService: '@App\Service\ProductService'
+                    productService: '@App\Product\ProductService'
                     productCategoryService: '@App\ProductCategory\ProductCategoryService'
             
     extensions:
