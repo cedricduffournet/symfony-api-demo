@@ -13,7 +13,7 @@
 /var/sessions/*
 !var/sessions/.gitkeep
 /vendor/
-
+/public/uploads
 ###> behat/symfony2-extension ###
 behat.yml
 ###< behat/symfony2-extension ###
@@ -27,4 +27,7 @@ behat.yml
 /phpunit.xml
 ###< phpunit/phpunit ###
 
+###> friendsofphp/php-cs-fixer ###
+/.php_cs
 /.php_cs.cache
+###< friendsofphp/php-cs-fixer ###

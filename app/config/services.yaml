@@ -1,13 +1,14 @@
 parameters:
     locale: 'fr'
-
+    upload_directory: '/uploads'
+    product_image: '/products/images'
 # This file is the entry point to configure your own services.
 # Files in the packages/ subdirectory configure your dependencies.
 
 # Put parameters here that don't need to change on each machine where the app is deployed
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 #imports:
-#    - { resource: "../src/Dakodapp/Resources/config/services.yml" }
+#    - { resource: "../src/app/Resources/config/services.yml" }
 
 services:
     # default configuration for services in *this* file
@@ -56,17 +57,27 @@ services:
         arguments:
             $decimals: '%tbbc_money.decimals%'
 
+    App\Service\FileUploader:
+        public: true
+        arguments:
+            $projectDir: '%kernel.project_dir%'
+
+    App\Product\ProductImageRequestHandler:
+        public: true
+        arguments:
+            $uri: '%upload_directory%%product_image%'
+
     #App\DataFixtures\ORM\:
-    #    resource: '../src/Dakodapp/DataFixtures/ORM/'
+    #    resource: '../src/app/DataFixtures/ORM/'
     #    tags: [doctrine.fixture.orm]
 
     #App\DataFixtures\:
-    #    resource: '../src/Dakodapp/DataFixtures'
+    #    resource: '../src/app/DataFixtures'
     #    autowire: true
     #    autoconfigure: true
 
     #App\Entity:
-    #    resource: '../src/Dakodapp/Entity/*'
+    #    resource: '../src/app/Entity/*'
     #    autowire: true      # Automatically injects dependencies in your services.
     #    autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
 

@@ -16,8 +16,11 @@ class RestApiContext extends ApiContext
      *
      * @Given /^I am successfully logged in with username: "([^"]*)", password: "([^"]*)" and grantType: "([^"]*)"$/
      */
-    public function iAmSuccessfullyLoggedInWithUsernamePasswordAndGranttype(string $username, string $password, string $grantType): void
-    {
+    public function iAmSuccessfullyLoggedInWithUsernamePasswordAndGranttype(
+        string $username,
+        string $password,
+        string $grantType
+    ): void {
         $this->requestOptions = [
                 'json' => [
                     'username'   => $username,

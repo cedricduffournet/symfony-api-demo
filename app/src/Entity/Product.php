@@ -84,9 +84,17 @@ class Product implements ProductInterface
      */
     private $categories;
 
+    /**
+     * @var Media[]|ArrayCollection
+     *
+     * @ORM\OneToMany(targetEntity="Media", mappedBy="product", cascade={"persist"})
+     */
+    private $images;
+
     public function __construct()
     {
         $this->categories = new ArrayCollection();
+        $this->images = new ArrayCollection();
     }
 
     public static function create(string $name, string $description, Money $price, iterable $categories): self
@@ -163,11 +171,30 @@ class Product implements ProductInterface
         if ($this->categories->contains($productCategory)) {
             return;
         }
-        $this->categories[] = $productCategory;
+        $this->categories->add($productCategory);
     }
 
     public function removeCategory(ProductCategory $productCategory)
     {
         $this->categories->removeElement($productCategory);
+    }
+
+    public function getImages(): Collection
+    {
+        return $this->images;
+    }
+
+    public function addImage(Media $image): void
+    {
+        if ($this->images->contains($image)) {
+            return;
+        }
+        $image->setProduct($this);
+        $this->images[] = $image;
+    }
+
+    public function removeImage(Media $image): void
+    {
+        $this->images->removeElement($image);
     }
 }

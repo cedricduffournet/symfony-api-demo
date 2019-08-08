@@ -34,8 +34,10 @@ class ProductCategoryController extends AbstractFOSRestController
     /**
      * ProductCategoryController constructor.
      */
-    public function __construct(ProductCategoryServiceInterface $productCategoryService, ProductCategoryRequestHandler $productCategoryRequestHandler)
-    {
+    public function __construct(
+        ProductCategoryServiceInterface $productCategoryService,
+        ProductCategoryRequestHandler $productCategoryRequestHandler
+    ) {
         $this->productCategoryService = $productCategoryService;
         $this->productCategoryRequestHandler = $productCategoryRequestHandler;
     }

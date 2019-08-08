@@ -44,8 +44,8 @@ class PublicController extends AbstractFOSRestController
         GroupManagerInterface $groupManager,
         MailerInterface $mailer,
         TokenGeneratorInterface $tokenGenerator,
-        int $retryTtl)
-    {
+        int $retryTtl
+    ) {
         $this->eventDispatcher = $eventDispatcher;
         $this->userManager = $userManager;
         $this->groupManager = $groupManager;

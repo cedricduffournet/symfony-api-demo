@@ -9,8 +9,10 @@ class ProductCategoryRequestHandler
     private $productCategoryFactory;
     private $productCategoryService;
 
-    public function __construct(ProductCategoryFactory $productCategoryFactory, ProductCategoryService $productCategoryService)
-    {
+    public function __construct(
+        ProductCategoryFactory $productCategoryFactory,
+        ProductCategoryService $productCategoryService
+    ) {
         $this->productCategoryFactory = $productCategoryFactory;
         $this->productCategoryService = $productCategoryService;
     }
@@ -23,8 +25,10 @@ class ProductCategoryRequestHandler
         return $productCategory;
     }
 
-    public function updateProductCategory(ProductCategoryRequest $productCategoryRequest, ProductCategory $productCategory): void
-    {
+    public function updateProductCategory(
+        ProductCategoryRequest $productCategoryRequest,
+        ProductCategory $productCategory
+    ): void {
         $productCategory->update($productCategoryRequest);
         $this->productCategoryService->updateProductCategory($productCategory);
     }

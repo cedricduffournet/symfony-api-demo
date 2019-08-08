@@ -17,8 +17,10 @@ class ProductSetupContext implements Context, SnippetAcceptingContext
      */
     private $productService;
 
-    public function __construct(ProductServiceInterface $productService, ProductCategoryServiceInterface $productCategoryService)
-    {
+    public function __construct(
+        ProductServiceInterface $productService,
+        ProductCategoryServiceInterface $productCategoryService
+    ) {
         $this->productService = $productService;
         $this->productCategoryService = $productCategoryService;
     }
@@ -34,10 +36,13 @@ class ProductSetupContext implements Context, SnippetAcceptingContext
             $product->setDescription($val['description']);
             $money = new Money((int) $val['priceAmount'], new Currency($val['priceCurrency']));
             $product->setPrice($money);
-            $aCategories = explode(',', $val['categories']);
-            foreach ($aCategories as $value) {
-                $category = $this->productCategoryService->getProductCategory((int) $value);
-                $product->addCategory($category);
+
+            if ('' !== $val['categories']) {
+                $aCategories = explode(',', $val['categories']);
+                foreach ($aCategories as $value) {
+                    $category = $this->productCategoryService->getProductCategory((int) $value);
+                    $product->addCategory($category);
+                }
             }
             $this->productService->updateProduct($product);
         }
