@@ -1,12 +1,5 @@
 <?php
 
-/*
- * This file is part of the Dakodapp package.
- *
- * (c) DUFFOURNET Cedric <contact@cedricduffournet.com>
- *
- */
-
 namespace App\Controller;
 
 use App\Entity\User;

@@ -30,13 +30,21 @@ if (class_exists('PhpCsFixer\Finder')) {    // PHP-CS-Fixer 2.x
                     '=>' => 'align'
                 ]
             ],
+            'multiline_whitespace_before_semicolons' => true,
             'array_syntax' => ['syntax' => 'short'],
             'ordered_imports' => true,
             'no_superfluous_phpdoc_tags' => true,
             'no_useless_else' => true,
             'no_useless_return' => true,
+            'increment_style' => ['style' => 'post'],
+            'PedroTroller/line_break_between_method_arguments' => [ 'max-args' => 20 ],
+            'PedroTroller/line_break_between_statements' => true,
         ))
         ->setFinder($finder)
+        ->registerCustomFixers([
+            new PedroTroller\CS\Fixer\CodingStyle\LineBreakBetweenMethodArgumentsFixer,
+            new PedroTroller\CS\Fixer\CodingStyle\LineBreakBetweenStatementsFixer,
+        ])
     ;
 } elseif (class_exists('Symfony\CS\Finder\DefaultFinder')) {  // PHP-CS-Fixer 1.x
     $finder = Symfony\CS\Finder\DefaultFinder::create()

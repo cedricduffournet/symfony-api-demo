@@ -29,8 +29,11 @@ class UserSetupContext implements Context, SnippetAcceptingContext
      */
     private $civilityService;
 
-    public function __construct(UserManagerInterface $userManager, GroupManagerInterface $groupManager, CivilityServiceInterface $civilityService)
-    {
+    public function __construct(
+        UserManagerInterface $userManager,
+        GroupManagerInterface $groupManager,
+        CivilityServiceInterface $civilityService
+    ) {
         $this->userManager = $userManager;
         $this->groupManager = $groupManager;
         $this->civilityService = $civilityService;

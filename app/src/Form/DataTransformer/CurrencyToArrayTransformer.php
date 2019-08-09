@@ -21,6 +21,7 @@ class CurrencyToArrayTransformer implements DataTransformerInterface
         if (null === $value) {
             return;
         }
+
         if (!$value instanceof Currency) {
             throw new UnexpectedTypeException($value, 'Currency');
         }
@@ -36,9 +37,11 @@ class CurrencyToArrayTransformer implements DataTransformerInterface
         if (null === $value) {
             return;
         }
+
         if (!is_array($value)) {
             throw new UnexpectedTypeException($value, 'array');
         }
+
         if (!isset($value['tbbc_name'])) {
             return;
         }

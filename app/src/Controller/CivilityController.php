@@ -34,8 +34,10 @@ class CivilityController extends AbstractFOSRestController
     /**
      * CivilityController constructor.
      */
-    public function __construct(CivilityServiceInterface $civilityService, CivilityRequestHandler $civilityRequestHandler)
-    {
+    public function __construct(
+        CivilityServiceInterface $civilityService,
+        CivilityRequestHandler $civilityRequestHandler
+    ) {
         $this->civilityService = $civilityService;
         $this->civilityRequestHandler = $civilityRequestHandler;
     }

@@ -27,8 +27,11 @@ class UserFixtures extends Fixture implements FixtureGroupInterface, DependentFi
      */
     private $groupManager;
 
-    public function __construct(UserManagerInterface $userManager, CivilityServiceInterface $civilityService, GroupManagerInterface $groupService)
-    {
+    public function __construct(
+        UserManagerInterface $userManager,
+        CivilityServiceInterface $civilityService,
+        GroupManagerInterface $groupService
+    ) {
         $this->userManager = $userManager;
         $this->civilityService = $civilityService;
         $this->groupManager = $groupService;
