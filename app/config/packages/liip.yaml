@@ -1,0 +1,15 @@
+liip_imagine:
+  loaders:
+    default:
+      filesystem:
+        data_root: '%kernel.project_dir%/public/uploads/products/images'
+  filter_sets:
+    main_image:
+      quality: 95
+      filters:
+        thumbnail: { size: [800, 800], mode: inset }
+    thumbnail_name:
+      quality: 95
+      filters:
+        thumbnail: { size: [120, 90], mode: inset }
+        background : { size : [124, 94], position : center, color : '#000000' }
