@@ -67,6 +67,12 @@ services:
         arguments:
             $uri: '%upload_directory%%product_image%'
 
+    Liip\ImagineBundle\Imagine\Data\DataManager:
+        alias: 'liip_imagine.data.manager'
+
+    Liip\ImagineBundle\Imagine\Filter\FilterManager:
+        alias: 'liip_imagine.filter.manager'
+
     #App\DataFixtures\ORM\:
     #    resource: '../src/app/DataFixtures/ORM/'
     #    tags: [doctrine.fixture.orm]
